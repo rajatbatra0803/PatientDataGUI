@@ -1,0 +1,76 @@
+<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+<div class="form-group">
+  <label for="name">Name</label>
+  <input type="text" class="form-control" id="name"
+         
+         [(ngModel)]="model.name" name="name">
+</div>
+
+
+
+<div class="form-group">
+  <label for="gender">Gender</label>
+  <select class="form-control"  id="gender"
+  
+          [(ngModel)]="model.gender" name="gender">
+    <option *ngFor="let gen of genders" [value]="gen">{{gen}}</option>
+  </select>
+</div>
+
+<div class="form-group" >
+    <label for="phoneNumber">phone Number</label>
+    <input type="text"  OnlyNumber="true" class="form-control" id="phoneNumber" [readonly]="all"
+           [(ngModel)]="model.phoneNumber" name="phoneNumber">
+  </div>
+
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+  <div class='panel panel-primary'>  
+    <label for="search">Search</label>
+    <input placeholder="Type Name to Search"
+    type="text"
+    [(ngModel)]="searchText"
+    class="form-control"
+    id="search"
+    mdbInput
+  />
+  <input type="button" value="Search" (click)="search()"/>
+ 
+    <div class='panel-heading'>  
+      List of Patients
+    </div>
+    
+<div class="dash-table-container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+         Phone Number
+          
+        </th>
+        <th>
+
+         </th>
+         <th>
+
+        </th>
+        
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let patient of patients;">
+        <td>{{patient.name}}</td>
+        <td>{{patient.gender}}</td>
+        <td>{{patient.phoneNumber}}</td>
+        <td> <input type="button" value="Edit" (click)="RowSelectedEdit(patient)"/></td>
+        <td> <input type="button" value="Delete" (click)="RowSelected(patient)"/></td>
+      </tr> 
+    </tbody>
+  </table>
+</div>
